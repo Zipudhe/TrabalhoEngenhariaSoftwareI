@@ -1,0 +1,137 @@
+{
+  "usuarios": [
+    {
+      "codigo": 123,
+      "tipoUsuario": "AlunoGraduacao",
+      "nome": "João da Silva"
+    },
+    {
+      "codigo": 456,
+      "tipoUsuario": "AlunoPosGraduacao",
+      "nome": "Luiz Fernando Rodrigues"
+    },
+    {
+      "codigo": 789,
+      "tipoUsuario": "AlunoGraduacao",
+      "nome": "Pedro Paulo"
+    },
+    {
+      "codigo": 100,
+      "tipoUsuario": "Professor",
+      "nome": "Carlos Lucena"
+    }
+  ],
+  "livros": [
+    {
+      "Código": 100,
+      "Título": "Engenharia de Software",
+      "Editora": "AddisonWesley",
+      "Autores": "Ian Sommervile",
+      "Edição": "6ª",
+      "Ano Publicação": 2000
+    },
+    {
+      "Código": 101,
+      "Título": "UML – Guia do Usuário",
+      "Editora": "Campus",
+      "Autores": "Grady Booch, James Rumbaugh, Ivar Jacobson",
+      "Edição": "7ª",
+      "Ano Publicação": 2000
+    },
+    {
+      "Código": 200,
+      "Título": "Code Complete",
+      "Editora": "Microsoft Press",
+      "Autores": "Steve McConnell",
+      "Edição": "2ª",
+      "Ano Publicação": 2014
+    },
+    {
+      "Código": 201,
+      "Título": "Agile Software Development, Principles, Patterns, and Practices",
+      "Editora": "Prentice Hall",
+      "Autores": "Robert Martin",
+      "Edição": "1ª",
+      "Ano Publicação": 2002
+    },
+    {
+      "Código": 300,
+      "Título": "Refactoring: Improving the Design of Existing Code",
+      "Editora": "Addison- Wesley Professional",
+      "Autores": "Martin Fowler",
+      "Edição": "1ª",
+      "Ano Publicação": 1999
+    },
+    {
+      "Código": 301,
+      "Título": "Software Metrics: A Rigorous and Practical Approach",
+      "Editora": "CRC Press",
+      "Autores": "Norman Fenton, James Bieman",
+      "Edição": "3ª",
+      "Ano Publicação": 2014
+    },
+    {
+      "Código": 400,
+      "Título": "Design Patterns: Elements of Reusable Object-Oriented Software",
+      "Editora": "Addison- Wesley Professional",
+      "Autores": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "Edição": "1ª",
+      "Ano Publicação": 1994
+    },
+    {
+      "Código": 401,
+      "Título": "UML Distilled: A Brief Guide to the Standard Object Modeling Language",
+      "Editora": "Addison- Wesley Professional",
+      "Autores": "Martin Fowler",
+      "Edição": "3ª",
+      "Ano Publicação": 2003
+    }
+  ],
+  "exemplares": [
+    {
+      "Código do Livro": 100,
+      "Código Exemplar": 1,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 100,
+      "Código Exemplar": 2,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 101,
+      "Código Exemplar": 3,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 200,
+      "Código Exemplar": 4,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 201,
+      "Código Exemplar": 5,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 300,
+      "Código Exemplar": 6,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 300,
+      "Código Exemplar": 7,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 400,
+      "Código Exemplar": 8,
+      "Status Exemplar": "Disponível"
+    },
+    {
+      "Código do Livro": 400,
+      "Código Exemplar": 9,
+      "Status Exemplar": "Disponível"
+    }
+  ]
+}

@@ -2,136 +2,137 @@
   "usuarios": [
     {
       "codigo": 123,
-      "tipoUsuario": "AlunoGraduacao",
+      "tipo_usuario": "AlunoGraduacao",
       "nome": "João da Silva"
     },
     {
       "codigo": 456,
-      "tipoUsuario": "AlunoPosGraduacao",
+      "tipo_usuario": "AlunoPosGraduacao",
       "nome": "Luiz Fernando Rodrigues"
     },
     {
       "codigo": 789,
-      "tipoUsuario": "AlunoGraduacao",
+      "tipo_usuario": "AlunoGraduacao",
       "nome": "Pedro Paulo"
     },
     {
       "codigo": 100,
-      "tipoUsuario": "Professor",
+      "tipo_usuario": "Professor",
       "nome": "Carlos Lucena"
     }
   ],
   "livros": [
     {
-      "Código": 100,
-      "Título": "Engenharia de Software",
-      "Editora": "AddisonWesley",
-      "Autores": "Ian Sommervile",
-      "Edição": "6ª",
-      "Ano Publicação": 2000
+      "codigo": 100,
+      "titulo": "Engenharia de Software",
+      "editora": "AddisonWesley",
+      "autores": "Ian Sommervile",
+      "edicao": "6ª",
+      "ano_publicacao": 2000
     },
     {
-      "Código": 101,
-      "Título": "UML – Guia do Usuário",
-      "Editora": "Campus",
-      "Autores": "Grady Booch, James Rumbaugh, Ivar Jacobson",
-      "Edição": "7ª",
-      "Ano Publicação": 2000
+      "codigo": 101,
+      "titulo": "UML – Guia do Usuário",
+      "editora": "Campus",
+      "autores": "Grady Booch, James Rumbaugh, Ivar Jacobson",
+      "edicao": "7ª",
+      "ano_publicacao": 2000
     },
     {
-      "Código": 200,
-      "Título": "Code Complete",
-      "Editora": "Microsoft Press",
-      "Autores": "Steve McConnell",
-      "Edição": "2ª",
-      "Ano Publicação": 2014
+      "codigo": 200,
+      "titulo": "Code Complete",
+      "editora": "Microsoft Press",
+      "autores": "Steve McConnell",
+      "edicao": "2ª",
+      "ano_publicacao": 2014
     },
     {
-      "Código": 201,
-      "Título": "Agile Software Development, Principles, Patterns, and Practices",
-      "Editora": "Prentice Hall",
-      "Autores": "Robert Martin",
-      "Edição": "1ª",
-      "Ano Publicação": 2002
+      "codigo": 201,
+      "titulo": "Agile Software Development, Principles, Patterns, and Practices",
+      "editora": "Prentice Hall",
+      "autores": "Robert Martin",
+      "edicao": "1ª",
+      "ano_publicacao": 2002
     },
     {
-      "Código": 300,
-      "Título": "Refactoring: Improving the Design of Existing Code",
-      "Editora": "Addison- Wesley Professional",
-      "Autores": "Martin Fowler",
-      "Edição": "1ª",
-      "Ano Publicação": 1999
+      "codigo": 300,
+      "titulo": "Refactoring: Improving the Design of Existing Code",
+      "editora": "Addison- Wesley Professional",
+      "autores": "Martin Fowler",
+      "edicao": "1ª",
+      "ano_publicacao": 1999
     },
     {
-      "Código": 301,
-      "Título": "Software Metrics: A Rigorous and Practical Approach",
-      "Editora": "CRC Press",
-      "Autores": "Norman Fenton, James Bieman",
-      "Edição": "3ª",
-      "Ano Publicação": 2014
+      "codigo": 301,
+      "titulo": "Software Metrics: A Rigorous and Practical Approach",
+      "editora": "CRC Press",
+      "autores": "Norman Fenton, James Bieman",
+      "edicao": "3ª",
+      "ano_publicacao": 2014
     },
     {
-      "Código": 400,
-      "Título": "Design Patterns: Elements of Reusable Object-Oriented Software",
-      "Editora": "Addison- Wesley Professional",
-      "Autores": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
-      "Edição": "1ª",
-      "Ano Publicação": 1994
+      "codigo": 400,
+      "titulo": "Design Patterns: Elements of Reusable Object-Oriented Software",
+      "editora": "Addison- Wesley Professional",
+      "autores": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "edicao": "1ª",
+      "ano_publicacao": 1994
     },
     {
-      "Código": 401,
-      "Título": "UML Distilled: A Brief Guide to the Standard Object Modeling Language",
-      "Editora": "Addison- Wesley Professional",
-      "Autores": "Martin Fowler",
-      "Edição": "3ª",
-      "Ano Publicação": 2003
+      "codigo": 401,
+      "titulo": "UML Distilled: A Brief Guide to the Standard Object Modeling Language",
+      "editora": "Addison- Wesley Professional",
+      "autores": "Martin Fowler",
+      "edicao": "3ª",
+      "ano_publicacao": 2003
     }
   ],
   "exemplares": [
     {
-      "Código do Livro": 100,
-      "Código Exemplar": 1,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 100,
+      "codigo_exemplar": 1,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 100,
-      "Código Exemplar": 2,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 100,
+      "codigo_exemplar": 2,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 101,
-      "Código Exemplar": 3,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 101,
+      "codigo_exemplar": 3,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 200,
-      "Código Exemplar": 4,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 200,
+      "codigo_exemplar": 4,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 201,
-      "Código Exemplar": 5,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 201,
+      "codigo_exemplar": 5,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 300,
-      "Código Exemplar": 6,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 300,
+      "codigo_exemplar": 6,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 300,
-      "Código Exemplar": 7,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 300,
+      "codigo_exemplar": 7,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 400,
-      "Código Exemplar": 8,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 400,
+      "codigo_exemplar": 8,
+      "titulo_exemplar": "Disponível"
     },
     {
-      "Código do Livro": 400,
-      "Código Exemplar": 9,
-      "Status Exemplar": "Disponível"
+      "codigo_livro": 400,
+      "codigo_exemplar": 9,
+      "titulo_exemplar": "Disponível"
     }
-  ]
+  ],
+  "emprestimos": []
 }

@@ -1,7 +1,8 @@
 import { ICommand } from "../../interfaces/ICommand"
+import { OutputHandler } from "../OutputHandler"
 
 export class CommandEmprestarLivro implements ICommand {
   public execute(): void {
-    throw new Error("Method not implemented.");
+    OutputHandler.SuccessOutput('Livro emprestado com sucesso')
   }
 }

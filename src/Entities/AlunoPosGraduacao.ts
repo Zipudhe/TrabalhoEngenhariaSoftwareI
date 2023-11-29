@@ -1,12 +1,6 @@
-import { IUsuario } from "../interfaces/IUsuario"
+import { Usuario } from "./Usuario";
 
-export class AlunoPosGraduacao implements IUsuario {
-  constructor(
-    private codigo: number,
-    private nome: string,
-    private tempoEmprestimo: number,
-  ) { }
-
+export class AlunoPosGraduacao extends Usuario {
   public obterNome(): string {
     return this.nome;
   }

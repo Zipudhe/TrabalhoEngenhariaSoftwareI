@@ -202,3 +202,17 @@ class Database {
 }
 
 export default Database;
+
+// MVC - Model View Controller
+// Modules - Controller -> Service -> Repositório
+/*
+  Usuario -> biblioteca -> database
+
+
+  Design Facade [Biblioteca]
+  Main -> Biblioteca -> database
+  Main -> GerenciadorLivrosAluno.emprestarLivro(Usuario  usuario) -> {
+    usuario.obterTempoEmprestimo()
+        
+  }  
+*/

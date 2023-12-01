@@ -1,8 +1,7 @@
 import figlet from 'figlet';
 import PromptSync from "prompt-sync"
 
-import { Biblioteca } from './Entities/Biblioteca'
-import { ICommand } from './interfaces/ICommand'
+import { ICommand, CommandProps } from './interfaces/ICommand'
 
 import { CommandDevolver } from "./Entities/Commands/CommandDevolver"
 import { CommandEmprestarLivro } from "./Entities/Commands/CommandEmprestar"
@@ -12,12 +11,15 @@ import { OutputHandler } from './Entities/OutputHandler';
 type Commands = Map<String, ICommand> 
 
 class Main {
-  protected biblioteca = new Biblioteca()
   private prompt = PromptSync({ sigint: true })
   private commands: Commands = new Map()
   private shouldRun: boolean = false
 
   constructor(){
+    this.initializeCommands()
+  }
+
+  private initializeCommands() {
     this.commands.set('emp', new CommandEmprestarLivro())
     this.commands.set('dev', new CommandDevolver())
     this.commands.set('res', new CommandReservar())
@@ -31,13 +33,18 @@ class Main {
         const input = this.prompt('digite o comando: ').split(' ')
         const [usrCommand, codUsuario, codLivro] = input
       
-        const command = this.commands.get(usrCommand)
-        if(command) {
-          command.execute()
-        } else {
-          OutputHandler.ErrorOutput('Comando inexistente')
-        }
+        this.executarComando(usrCommand, { codLivro, codUsuario })
       }
+  }
+
+  private executarComando(comand: string, props: CommandProps) {
+    const command = this.commands.get(comand)
+    
+    if(command) {
+      command.execute(props)
+    } else {
+      OutputHandler.ErrorOutput('Comando inexistente')
+    }
   }
 }
 

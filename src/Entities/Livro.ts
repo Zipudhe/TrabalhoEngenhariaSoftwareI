@@ -8,7 +8,7 @@ export class Livro {
     private readonly titulo: string,
     private autores: string,
     private edicao: string,
-    private privateAnoPublicacao: Date,
+    private anoPublicacao: number,
     private editora: string,
   ){}
 
@@ -28,8 +28,8 @@ export class Livro {
     return this.edicao;
   }
 
-  public getAnoPublicacao(): Date {
-    return this.privateAnoPublicacao;
+  public getAnoPublicacao(): number {
+    return this.anoPublicacao;
   }
 
   public getEditora(): string {

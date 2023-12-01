@@ -8,7 +8,7 @@ interface IDatabaseUser {
   nome: string;
 }
 
-interface IDatabaseBook {
+export interface IDatabaseBook {
   codigo: number;
   titulo: string;
   editora: string;
@@ -17,7 +17,7 @@ interface IDatabaseBook {
   ano_publicacao: number;
 }
 
-interface IDatabaseExemplary {
+export interface IDatabaseExemplary {
   codigo_livro: number;
   codigo_exemplar: number;
   titulo_exemplar: 'Disponível' | 'Indisponível';
@@ -47,7 +47,7 @@ function readJsonFile(): IDatabase | null {
   }
 }
 
-class Database {
+export class Database {
   private static instance: Database;
   private data: IDatabase = readJsonFile() || {
     usuarios: [],

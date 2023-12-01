@@ -6,7 +6,9 @@ import { ICommand, CommandProps } from './interfaces/ICommand'
 import { CommandDevolver } from "./Entities/Commands/CommandDevolver"
 import { CommandEmprestarLivro } from "./Entities/Commands/CommandEmprestar"
 import { CommandReservar } from "./Entities/Commands/CommandReservar"
-import { CommandConsulta } from "./Entities/Commands/CommandConsulta"
+import { CommandConsultaLivro } from "./Entities/Commands/CommandConsultaLivro"
+import { CommandConsultaUsuario } from "./Entities/Commands/CommandConsultaUsuario"
+
 import { OutputHandler } from './Entities/OutputHandler';
 
 type Commands = Map<String, ICommand> 
@@ -24,7 +26,8 @@ class Main {
     this.commands.set('emp', new CommandEmprestarLivro())
     this.commands.set('dev', new CommandDevolver())
     this.commands.set('res', new CommandReservar())
-    this.commands.set('liv', new CommandConsulta())
+    this.commands.set('liv', new CommandConsultaLivro())
+    this.commands.set('usu', new CommandConsultaUsuario())
   }
 
   public run() {

@@ -1,6 +1,7 @@
 import { Usuario } from "./Usuario";
 
 export class AlunoGraduacao extends Usuario {
+  protected tempoEmprestimo = 3;
   public obterNome(): string {
     return this.nome;
   }

@@ -4,7 +4,7 @@ import { Livro } from './Livro'
 import { Usuario } from './Usuario'
 
 export class Biblioteca {
-  private static instancia?: Biblioteca = undefined;
+  private static instancia: Biblioteca;
   gerenciadorLivro: GerenciadorLivros = new GerenciadorLivros() // retirar esse 
   gerenciadorUsuarios: GerenciadorUsuarios = new GerenciadorUsuarios() // retirar esse 
   livros: Livro[] = []
@@ -20,11 +20,16 @@ export class Biblioteca {
       this.instancia = new Biblioteca()
     }
 
-    return this.instancia!
+    return this.instancia
   }
 
   public consultarLivro(codLivro: number): Livro | undefined {
     const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
     return livro
+  }
+
+  public consultarUsuario(codLivro: number): Usuario | undefined {
+    const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codLivro)
+    return usuario
   }
 }

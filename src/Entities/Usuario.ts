@@ -44,6 +44,10 @@ export abstract class Usuario implements IUsuario {
     return this.emprestimos.filter(emprestimo => emprestimo.obteStatusEmprestimo() == StatusEmprestimo.EmCurso)
   }
 
+  public obterEmprestimos() {
+    return this.emprestimos
+  }
+
   public emprestarLivro(livro: Livro): void {
     if(!this.validador.validar(livro, this)) {
       return
@@ -53,5 +57,13 @@ export abstract class Usuario implements IUsuario {
     const emprestimo = new Emprestimo(livro.getCodigo(), codExemplar, this.tempoEmprestimo)
     this.emprestimos.push(emprestimo)
     OutputHandler.SuccessOutput("Livro emprestado com sucesso")
+  }
+
+  public devolverLivro(livro: Livro) {
+    const emprestimoEmCurso = this.obterEmprestimosEmCurso().find(emprestimo => emprestimo.obterCodLivro() == livro.getCodigo())
+    if(emprestimoEmCurso) {
+      emprestimoEmCurso.devolverLivro()
+      livro.devolver()
+    }
   }
 }

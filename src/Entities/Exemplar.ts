@@ -1,4 +1,4 @@
-type Status = 'Disponível' | 'Indisponível';
+type Status = 'Disponível' | 'Indisponível' | 'Reservado';
 
 export class Exemplar {
   constructor(private readonly codigo: number, private status: Status) { }
@@ -13,5 +13,9 @@ export class Exemplar {
 
   public setStatus(status: Status): void {
     this.status = status;
+  }
+
+  public obterStatus() {
+    return this.status
   }
 }

@@ -1,6 +1,7 @@
 import { GerenciadorLivros } from './GerenciadorLivros'
 import { GerenciadorUsuarios } from './GerenciadorUsuarios'
 import { Livro } from './Livro'
+import { OutputHandler } from './OutputHandler';
 import { Usuario } from './Usuario'
 
 export class Biblioteca {
@@ -28,8 +29,25 @@ export class Biblioteca {
     return livro
   }
 
-  public consultarUsuario(codLivro: number): Usuario | undefined {
-    const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codLivro)
+  public consultarUsuario(codUsuario: number): Usuario | undefined {
+    const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codUsuario)
     return usuario
+  }
+
+  public emprestarLivro(codLivro: number, codUsuario: number): void {
+    const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codUsuario)
+    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+    
+    if(!usuario) {
+      OutputHandler.ErrorOutput('Usuário inválido')
+      return
+    }
+
+    if(!livro) {
+      OutputHandler.ErrorOutput('Livro inválido')
+      return
+    }
+    
+    usuario.emprestarLivro(livro)
   }
 }

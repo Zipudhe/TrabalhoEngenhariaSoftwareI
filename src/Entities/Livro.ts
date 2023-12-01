@@ -44,6 +44,10 @@ export class Livro {
     return this.exemplares
   }
 
+  public checarDisponibilidadeExemplares(): boolean {
+    return this.exemplares.length > 0
+  }
+
   public emprestar(): number {
     const exemplarDisponivel = this.exemplares.find(exemplar => exemplar.getStatus() === 'Disponível');
     if (exemplarDisponivel) {

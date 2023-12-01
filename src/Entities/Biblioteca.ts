@@ -15,11 +15,16 @@ export class Biblioteca {
     this.usuarios = this.gerenciadorUsuarios.obterUsuarios()
   }
 
-  public static obterInstancia() {
+  public static obterInstancia(): Biblioteca {
     if(!Biblioteca.instancia) {
       this.instancia = new Biblioteca()
     }
 
-    return this.instancia
+    return this.instancia!
+  }
+
+  public consultarLivro(codLivro: number): Livro | undefined {
+    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+    return livro
   }
 }

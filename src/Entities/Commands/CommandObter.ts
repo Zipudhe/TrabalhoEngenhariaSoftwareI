@@ -6,7 +6,7 @@ type executeInput = {
   idUsuario: string
 }
 export class CommandObter implements ICommand {
-  public execute({ codLivro, codUsuario }: CommandProps): void {
+  public execute([ codLivro, codUsuario ]: CommandProps): void {
     const biblioteca = Biblioteca.obterInstancia()
     
   }

@@ -4,7 +4,7 @@ import { OutputHandler } from "../OutputHandler"
 
 
 export class CommandDevolver implements ICommand {
-  public execute({ codLivro, codUsuario }: CommandProps): void {
+  public execute([ codLivro, codUsuario]: CommandProps): void {
     const biblioteca = Biblioteca.obterInstancia()
     OutputHandler.SuccessOutput('Livro devolvido')
   }

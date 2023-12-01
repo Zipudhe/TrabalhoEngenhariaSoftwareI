@@ -50,4 +50,23 @@ export class Biblioteca {
     
     usuario.emprestarLivro(livro)
   }
+
+  public devolverLivro(codUsuario: number, codLivro: number): void {
+    const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codUsuario)
+    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+
+    if(!usuario) {
+      OutputHandler.ErrorOutput('Usuário inválido')
+      return
+    }
+
+    if(!livro) {
+      OutputHandler.ErrorOutput('Livro inválido')
+      return
+    }
+
+    usuario.devolverLivro(livro)
+
+    OutputHandler.devolucaoInfo(usuario, livro)
+  }
 }

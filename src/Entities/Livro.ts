@@ -57,4 +57,10 @@ export class Livro {
       throw new Error('Não há exemplares disponíveis');
     }
   }
+
+  public devolver(): void {
+    const exemplar = this.exemplares.find(exemplar => exemplar.obterStatus() == 'Indisponível')
+    
+    exemplar && exemplar.setStatus('Disponível')
+  }
 }

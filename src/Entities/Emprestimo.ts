@@ -40,6 +40,14 @@ export class Emprestimo {
     return false
   }
 
+  public obterDataEmprestimo() {
+    return this.dataEmprestimo
+  }
+
+  public obterDataEntrega() {
+    return this.dataEmprestimo
+  }
+
   private calcularDataEntrega(tempoEmprestimo: number): Date {
     const entrega = new Date()
     entrega.setDate(this.dataEmprestimo.getDate() + tempoEmprestimo)

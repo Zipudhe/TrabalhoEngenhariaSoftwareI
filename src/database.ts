@@ -2,7 +2,7 @@ import * as fs from 'fs';
 
 const filePath = 'dadosTeste.json';
 
-interface IDatabaseUser {
+export interface IDatabaseUser {
   codigo: number;
   tipo_usuario: 'AlunoGraduacao' | 'AlunoPosGraduacao' | 'Professor';
   nome: string;

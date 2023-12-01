@@ -1,5 +1,6 @@
 import chalk from 'chalk'
 import { Livro } from './Livro'
+import { Usuario } from './Usuario'
 
 export class OutputHandler {
   static SuccessOutput(text: string) {
@@ -27,6 +28,13 @@ export class OutputHandler {
       console.log(`\t - Status: ${status == 'Disponível' ? chalk.green(status) : chalk.red(status)}`)
       console.log('++++++++++++++++++++++++++++')
     })
+    console.log('----------------------------')
+  }
+
+  static mostrarUsuarioInfo(usuario: Usuario) {
+    console.log('----------------------------')
+    console.log(`Codigo: ${chalk.green(usuario.obterCodigo())}`)
+    console.log(`Nome: ${chalk.green(usuario.obterNome())}`)
     console.log('----------------------------')
   }
 }

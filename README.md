@@ -44,7 +44,7 @@
 
 ## Devolução
 
-**Comando:** ``` 'dev' + codUsuario + codLivro ```
+**Comando:** ``` 'dev' + codUsuario + codLivro ``` :white_check_mark:
 
 Ao final da execução esse comando deve mostrar ao usuário o status do comando e os nomes do usuário e titulo do livro que foi feita a ação.
 
@@ -100,7 +100,7 @@ obs: Os campos com "?" só aparecem em caso do exemplar não estiver disponível
 
 ## Consulta usuário
 
-**Comando:** ``` 'usu' + codUsuario ```
+**Comando:** ``` 'usu' + codUsuario ``` :white_check_mark:
 
 Formato da resposta da consulta deve ser a seguinte:
 ``` 

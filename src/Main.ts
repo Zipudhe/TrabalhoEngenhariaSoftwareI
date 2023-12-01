@@ -6,6 +6,7 @@ import { ICommand, CommandProps } from './interfaces/ICommand'
 import { CommandDevolver } from "./Entities/Commands/CommandDevolver"
 import { CommandEmprestarLivro } from "./Entities/Commands/CommandEmprestar"
 import { CommandReservar } from "./Entities/Commands/CommandReservar"
+import { CommandConsulta } from "./Entities/Commands/CommandConsulta"
 import { OutputHandler } from './Entities/OutputHandler';
 
 type Commands = Map<String, ICommand> 
@@ -23,6 +24,7 @@ class Main {
     this.commands.set('emp', new CommandEmprestarLivro())
     this.commands.set('dev', new CommandDevolver())
     this.commands.set('res', new CommandReservar())
+    this.commands.set('liv', new CommandConsulta())
   }
 
   public run() {
@@ -31,9 +33,11 @@ class Main {
       
       while(this.shouldRun) {
         const input = this.prompt('digite o comando: ').split(' ')
-        const [usrCommand, codUsuario, codLivro] = input
-      
-        this.executarComando(usrCommand, { codLivro, codUsuario })
+        const [usrCommand, ...args] = input
+
+        const parsedArgs = args.map(arg => Number.parseInt(arg))
+
+        this.executarComando(usrCommand, parsedArgs)
       }
   }
 

@@ -16,7 +16,7 @@
 
 ## Empreśtimo
 
-**Comando**:  ```'emp' + codUsuário + codLivro```
+**Comando**:  ```'emp' + codUsuário + codLivro``` :white_check_mark:
 
 ### Regras: 
 
@@ -69,7 +69,7 @@ Não há necessidade de checar se o código do usuário se refere realmente a um
  
 ## Consulta livro
 
-**Comando:** ``` 'liv' + codLivro ```
+**Comando:** ``` 'liv' + codLivro ``` :white_check_mark:
 
 Formato da resposta da consulta deve ser a seguinte:
 
@@ -95,7 +95,7 @@ Exemplares:
 ```
 
 
-obs: Os campos com "?" só aparecem em caso do exemplar não estar disponível
+obs: Os campos com "?" só aparecem em caso do exemplar não estiver disponível
 
 
 ## Consulta usuário

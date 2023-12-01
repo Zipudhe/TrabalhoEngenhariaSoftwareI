@@ -1,3 +1,8 @@
+
+export type CommandProps = {
+  codLivro: string,
+  codUsuario?: string
+}
 export interface ICommand {
-  execute(): void;
+  execute(props: CommandProps): void;
 }

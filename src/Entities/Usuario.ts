@@ -11,6 +11,7 @@ export abstract class Usuario implements IUsuario {
   protected tempoEmprestimo: number = 0
   protected emprestimos: Emprestimo[] = []
   protected reservas: Reserva[] = []
+  protected notificacoes: number = 0
   
   constructor(
     protected codigo: number,
@@ -79,5 +80,9 @@ export abstract class Usuario implements IUsuario {
     const reserva = new Reserva(livro.getCodigo(), codExemplar)
     this.reservas.push(reserva)
     OutputHandler.SuccessOutput("Livro reservado com sucesso")
+  }
+  
+  public atualizarNotificacoes(): void {
+    this.notificacoes += 1
   }
 }

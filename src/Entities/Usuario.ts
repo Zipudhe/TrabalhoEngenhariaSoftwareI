@@ -85,4 +85,8 @@ export abstract class Usuario implements IUsuario {
   public atualizarNotificacoes(): void {
     this.notificacoes += 1
   }
+
+  public obterNotificacoes(): number {
+    return this.notificacoes
+  }
 }

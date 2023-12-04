@@ -4,19 +4,26 @@ import { Subscriber } from "./Subscriber"
 
 
 export class Publisher {
-  private subscribers: Map<number, ISubscribers> = new Map()
+  private subscribers: Map<string, ISubscribers> = new Map()
 
   public subscribe(codigoLivro: number, usuario: Professor): void {
-    // TODO: checar se usuario é da classe Professor
     const subscriber: ISubscribers = new Subscriber(usuario); // Lidar com os efeitos colaterais de ser professor
-    this.subscribers.set(codigoLivro, subscriber)
+    const key = `${codigoLivro}__${usuario.obterCodigo()}`
+    this.subscribers.set(key, subscriber)
   }
 
-  public unsubscribe(codigoLivro: number): void {
-    const index = this.subscribers.delete(codigoLivro)
+  public unsubscribe(codigoLivro: number, usuario: Professor): void {
+    const key = `${codigoLivro}__${usuario.obterCodigo()}`
+    this.subscribers.delete(key)
   }
 
   public notify(codigoLivro: number): void {
-    this.subscribers.forEach(subscriber => subscriber.update(codigoLivro))
+    const entradas = this.subscribers.entries()
+    for(let sub of entradas) {
+      const [codigoLivro, codigoUsuario] = sub[0].split('__')
+      if(sub[0].includes(codigoLivro.toString())) {
+        sub[1].update(Number.parseInt(codigoUsuario))
+      }
+    }
   }
 }

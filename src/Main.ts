@@ -8,6 +8,7 @@ import { CommandEmprestarLivro } from "./Entities/Commands/CommandEmprestar"
 import { CommandReservar } from "./Entities/Commands/CommandReservar"
 import { CommandConsultaLivro } from "./Entities/Commands/CommandConsultaLivro"
 import { CommandConsultaUsuario } from "./Entities/Commands/CommandConsultaUsuario"
+import { CommandObservarLivro } from './Entities/Commands/CommandObservarLivro';
 
 import { OutputHandler } from './Entities/OutputHandler';
 
@@ -28,6 +29,7 @@ class Main {
     this.commands.set('res', new CommandReservar())
     this.commands.set('liv', new CommandConsultaLivro())
     this.commands.set('usu', new CommandConsultaUsuario())
+    this.commands.set('obs', new CommandObservarLivro())
   }
 
   public run() {

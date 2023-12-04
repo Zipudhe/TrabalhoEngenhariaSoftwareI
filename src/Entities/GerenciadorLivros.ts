@@ -1,5 +1,5 @@
 import { Livro } from "./Livro";
-import { Database, IDatabaseBook, IDatabaseExemplary } from '../database'
+import { BancoDeDados, IBancoDeDadosLivro, IBancoDeDadosExemplar } from '../BancoDeDados'
 import { Exemplar } from "./Exemplar";
 
 export class GerenciadorLivros {
@@ -7,9 +7,9 @@ export class GerenciadorLivros {
   constructor(){}
   //@ts-ignore
   public obterLivros(): Livro[] {
-    const database = Database.getInstance()
+    const database = BancoDeDados.getInstance()
     const livros = database.getLivros()
-      .map((databaseLivro: IDatabaseBook) => {
+      .map((databaseLivro: IBancoDeDadosLivro) => {
         
         const livro = new Livro(
           databaseLivro.codigo,

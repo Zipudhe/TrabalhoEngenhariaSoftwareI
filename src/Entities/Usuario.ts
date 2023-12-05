@@ -48,6 +48,10 @@ export abstract class Usuario implements IUsuario {
     return this.emprestimos.filter(emprestimo => emprestimo.obteStatusEmprestimo() == StatusEmprestimo.EmCurso)
   }
 
+  public obterEmprestimo(codExemplar: number) {
+    return this.emprestimos.find(emprestimo => emprestimo.obterCodExemplar() == codExemplar)
+  }
+
   public obterEmprestimos() {
     return this.emprestimos
   }
@@ -61,7 +65,7 @@ export abstract class Usuario implements IUsuario {
       return
     }
 
-    const codExemplar = livro.emprestar()
+    const codExemplar = livro.emprestar(this.codigo)
     const emprestimo = new Emprestimo(livro.getCodigo(), codExemplar, this.tempoEmprestimo)
     this.emprestimos.push(emprestimo)
     OutputHandler.SuccessOutput("Livro emprestado com sucesso")
@@ -81,7 +85,7 @@ export abstract class Usuario implements IUsuario {
       return
     }
 
-    const codExemplar = livro.reservar()
+    const codExemplar = livro.reservar(this.codigo)
     const reserva = new Reserva(livro.getCodigo(), codExemplar)
     this.reservas.push(reserva)
     OutputHandler.reservaStatus(this.nome, livro.getTitulo(), true)

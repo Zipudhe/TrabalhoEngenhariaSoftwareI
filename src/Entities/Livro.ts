@@ -54,13 +54,15 @@ export class Livro {
   }
 
   public checarDisponibilidadeExemplares(): boolean {
+    const exemplaresDisponiveis = this.obterExamplaresDisponiveis()
     return this.obterExamplaresDisponiveis().length > 0
   }
 
-  public emprestar(): number {
+  public emprestar(codUsuario: number): number {
     const exemplarDisponivel = this.exemplares.find(exemplar => exemplar.getStatus() === 'Disponível');
     if (exemplarDisponivel) {
       exemplarDisponivel.setStatus('Indisponível');
+      exemplarDisponivel.adicionarUsuario(codUsuario)
       return exemplarDisponivel.getCodigo();
     } else {
       throw new Error('Não há exemplares disponíveis');
@@ -73,9 +75,10 @@ export class Livro {
     exemplar && exemplar.setStatus('Disponível')
   }
 
-  public reservar(): number {
+  public reservar(codUsuario: number): number {
     const exemplar = this.exemplares.find(exemplar => exemplar.obterStatus() ==  'Disponível')!
     exemplar.setStatus('Reservado')
+    exemplar.adicionarUsuario(codUsuario)
 
     const livrosReservados = this.exemplares.filter(exemplar => exemplar.obterStatus() == 'Reservado').length
     

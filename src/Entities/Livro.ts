@@ -59,7 +59,7 @@ export class Livro {
   }
 
   public emprestar(codUsuario: number): number {
-    const exemplarDisponivel = this.exemplares.find(exemplar => exemplar.getStatus() === 'Disponível');
+    const exemplarDisponivel = this.exemplares.find(exemplar => exemplar.getStatus() === 'Disponível' || exemplar.getStatus() === 'Reservado');
     if (exemplarDisponivel) {
       exemplarDisponivel.setStatus('Indisponível');
       exemplarDisponivel.adicionarUsuario(codUsuario)

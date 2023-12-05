@@ -51,6 +51,10 @@ export abstract class Usuario implements IUsuario {
     return this.emprestimos
   }
 
+  public obterRevervas() {
+    return this.reservas
+  }
+
   public emprestarLivro(livro: Livro): void {
     if(!this.validador.validar(livro, this)) {
       return

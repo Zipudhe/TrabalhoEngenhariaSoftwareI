@@ -32,7 +32,7 @@ class Main {
 
   public run() {
       this.shouldRun = true
-      OutputHandler.NormalOutput(figlet.textSync("Eng. Software 1"));
+      OutputHandler.NormalOutput(figlet.textSync("Biblioteca - Eng. Software 1"));
       
       while(this.shouldRun) {
         const input = this.prompt('digite o comando: ').split(' ')

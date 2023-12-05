@@ -20,7 +20,5 @@ export class CommandObservarLivro implements ICommand {
       }
 
       biblioteca.EventManager.subscribe(codLivro, usuario as Professor)
-
-      biblioteca.EventManager.notify(codLivro)
   }
 }

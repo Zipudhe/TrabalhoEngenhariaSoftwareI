@@ -52,8 +52,12 @@ export abstract class Usuario implements IUsuario {
     return this.emprestimos
   }
 
+  public quantidadeReservas(): number {
+    return this.reservas.length
+  }
+
   public emprestarLivro(livro: Livro): void {
-    if(!this.validador.validar(livro, this)) {
+    if(!this.validador.validarEmprestimo(livro, this)) {
       return
     }
 
@@ -72,17 +76,19 @@ export abstract class Usuario implements IUsuario {
   }
 
   public reservarLivro(livro: Livro): void {
-    if(!this.validador.validar(livro, this)) {
+    if(!this.validador.validarReserva(livro, this)) {
+      OutputHandler.reservaStatus(this.nome, livro.getTitulo(), false)
       return
     }
 
     const codExemplar = livro.reservar()
     const reserva = new Reserva(livro.getCodigo(), codExemplar)
     this.reservas.push(reserva)
-    OutputHandler.SuccessOutput("Livro reservado com sucesso")
+    OutputHandler.reservaStatus(this.nome, livro.getTitulo(), true)
   }
   
   public atualizarNotificacoes(): void {
+    console.log('called atualizar notificacoes')
     this.notificacoes += 1
   }
 

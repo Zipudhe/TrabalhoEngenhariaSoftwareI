@@ -3,6 +3,7 @@ import { Livro } from './Livro'
 import { Usuario } from './Usuario'
 import { Biblioteca } from './Biblioteca'
 import { StatusEmprestimo } from './Emprestimo'
+import { Exemplar } from './Exemplar'
 
 export class OutputHandler {
   static SuccessOutput(text: string) {
@@ -17,17 +18,31 @@ export class OutputHandler {
     console.log(text)
   }
 
-  static mostrarLivroInfo(livro: Livro) {
+  static mostrarLivroInfo(livro: Livro, exemplaresReservados: Map<Exemplar, Usuario>, exemplaresEmprestados: Map<Exemplar, Usuario>) {
     const exemplares = livro.obterExemplares()
+    const qtdReservas = exemplares.filter(examplar => examplar.obterStatus() == 'Reservado').length
+    const dateFormatter = Intl.DateTimeFormat('pt-BR', { 
+      dateStyle: 'short'
+    })
     console.log('----------------------------')
     console.log(`Titulo: ${chalk.green(livro.getTitulo())}`)
-    console.log('Quantidade reservas: ')
+    console.log(`Quantidade reservas: ${qtdReservas}`)
+    for(let key of exemplaresReservados.keys()) {
+      console.log(`${exemplaresReservados.get(key)?.obterNome()}`)
+    }
     console.log('----------------------------')
     console.log('Examplares: ')
     exemplares.forEach(exemplar => {
+      const usuario = exemplaresEmprestados.get(exemplar)
       console.log(`\t - Código exemplar: ${exemplar.getCodigo()}`)
       const status = exemplar.getStatus()
       console.log(`\t - Status: ${status == 'Disponível' ? chalk.green(status) : chalk.red(status)}`)
+      if(usuario) {
+        const emprestimo = usuario.obterEmprestimo(exemplar.getCodigo())
+        console.log(`\t Usuario: ${usuario.obterNome()}`)
+        console.log(`\t Data Emprestimo: ${dateFormatter.format(emprestimo?.obterDataEmprestimo())}`)
+        console.log(`\t Data Devolucao: ${dateFormatter.format(emprestimo?.obterDataEntrega())}`)
+      }
       console.log('++++++++++++++++++++++++++++')
     })
     console.log('----------------------------')
@@ -40,6 +55,7 @@ export class OutputHandler {
     const dateFormatter = Intl.DateTimeFormat('pt-BR', { 
       dateStyle: 'short'
     })
+
     console.log('----------------------------')
     console.log(`Codigo: ${chalk.green(usuario.obterCodigo())}`)
     console.log(`Nome: ${chalk.green(usuario.obterNome())}`)

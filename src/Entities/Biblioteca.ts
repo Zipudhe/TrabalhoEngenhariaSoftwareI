@@ -75,8 +75,8 @@ export class Biblioteca {
   }
 
   public reservarLivro(codLivro: number, codUsuario: number): void {
-    const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codUsuario)
-    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+    const usuario = this.consultarUsuario(codUsuario)
+    const livro = this.consultarLivro(codLivro)
 
     if(!usuario) {
       OutputHandler.ErrorOutput('Usuário inválido')

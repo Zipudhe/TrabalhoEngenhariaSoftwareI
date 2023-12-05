@@ -2,18 +2,22 @@ import { GerenciadorLivros } from './GerenciadorLivros'
 import { GerenciadorUsuarios } from './GerenciadorUsuarios'
 import { Livro } from './Livro'
 import { OutputHandler } from './OutputHandler';
+import { Publisher } from './Publisher';
 import { Usuario } from './Usuario'
 
 export class Biblioteca {
   private static instancia: Biblioteca;
-  gerenciadorLivro: GerenciadorLivros = new GerenciadorLivros() // retirar esse 
-  gerenciadorUsuarios: GerenciadorUsuarios = new GerenciadorUsuarios() // retirar esse 
+  gerenciadorLivro: GerenciadorLivros = new GerenciadorLivros() 
+  gerenciadorUsuarios: GerenciadorUsuarios = new GerenciadorUsuarios()
+  EventManager: Publisher
+
   livros: Livro[] = []
   usuarios: Usuario[] = []
 
   private constructor() {
     this.livros = this.gerenciadorLivro.obterLivros()
     this.usuarios = this.gerenciadorUsuarios.obterUsuarios()
+    this.EventManager = new Publisher()
   }
 
   public static obterInstancia(): Biblioteca {

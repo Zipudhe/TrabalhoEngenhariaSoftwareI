@@ -3,7 +3,7 @@ import { Biblioteca } from "../Biblioteca"
 import { OutputHandler } from "../OutputHandler"
 
 export class CommandReservar implements ICommand {
-  public execute([ codLivro, codUsuario ]: CommandProps): void {
+  public execute([ codUsuario, codLivro ]: CommandProps): void {
     const biblioteca = Biblioteca.obterInstancia()
     biblioteca.reservarLivro(codLivro, codUsuario)
   }

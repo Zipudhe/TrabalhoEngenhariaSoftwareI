@@ -1,10 +1,11 @@
 import { ISubscribers } from "../interfaces/ISubscribers"
+import { Professor } from "./Professor"
+// import { Usuario } from "./Usuario"
 
 export class Subscriber implements ISubscribers {
-  private qtdNotifications: number = 0
+  constructor(private usuario: Professor){}
 
-  public update(codigoUsuario: number): void {
-    this.qtdNotifications++
-    console.log(`O usuário ${codigoUsuario} foi notificado.`)
+  public update(): void {
+    this.usuario.atualizarNotificacoes()
   }
 }

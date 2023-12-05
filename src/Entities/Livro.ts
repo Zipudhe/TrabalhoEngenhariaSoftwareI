@@ -1,3 +1,4 @@
+import { Biblioteca } from './Biblioteca';
 import { Exemplar } from './Exemplar'
 
 export class Livro {
@@ -43,9 +44,17 @@ export class Livro {
   public obterExemplares() {
     return this.exemplares
   }
+  
+  public obterExemplarDisponivel(): Exemplar | undefined {
+    return this.exemplares.find(exemplar =>  exemplar.obterStatus() == 'Disponível')
+  }
+
+  public obterExamplaresDisponiveis(): Exemplar[] {
+      return this.exemplares.filter(exemplar => exemplar.obterStatus() == 'Disponível')
+  }
 
   public checarDisponibilidadeExemplares(): boolean {
-    return this.exemplares.length > 0
+    return this.obterExamplaresDisponiveis().length > 0
   }
 
   public emprestar(): number {
@@ -65,6 +74,16 @@ export class Livro {
   }
 
   public reservar(): number {
+    const exemplar = this.exemplares.find(exemplar => exemplar.obterStatus() ==  'Disponível')!
+    exemplar.setStatus('Reservado')
+
+    const livrosReservados = this.exemplares.filter(exemplar => exemplar.obterStatus() == 'Reservado').length
+    
+    if(livrosReservados == 2) {
+      const biblioteca = Biblioteca.obterInstancia()
+      biblioteca.EventManager.notify(this.getCodigo())
+    }
+    
     return this.getCodigo();
   }
 }

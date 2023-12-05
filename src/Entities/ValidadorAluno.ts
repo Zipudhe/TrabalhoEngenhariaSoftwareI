@@ -4,12 +4,7 @@ import { OutputHandler } from "./OutputHandler";
 import { Usuario } from "./Usuario";
 
 export class ValidadorAluno implements IValidador {
-  validar(livro: Livro, usuario: Usuario): boolean {
-      // if(!livro.checarDisponibilidadeExemplares()) {
-      //   OutputHandler.ErrorOutput('Livro sem exemplares disponíveis')
-      //   return false
-      // }
-
+  validarEmprestimo(livro: Livro, usuario: Usuario): boolean {
       if(usuario.temAtrasos()) {
         OutputHandler.ErrorOutput('Usuario com atrasos')
         return false
@@ -33,4 +28,12 @@ export class ValidadorAluno implements IValidador {
 
     return true
   };
+
+  validarReserva(livro: Livro, usuario: Usuario): boolean {
+    if(!livro.checarDisponibilidadeExemplares() || usuario.quantidadeReservas() >= 3) {
+      return false
+    }
+    
+    return true
+  }
 }

@@ -1,3 +1,4 @@
+import { Biblioteca } from './Biblioteca';
 import { Exemplar } from './Exemplar'
 
 export class Livro {
@@ -65,6 +66,11 @@ export class Livro {
   }
 
   public reservar(): number {
+    const livrosReservados = this.exemplares.filter(exemplar => exemplar.obterStatus() == 'Reservado').length
+    if(livrosReservados == 2) {
+      const biblioteca = Biblioteca.obterInstancia()
+      biblioteca.EventManager.notify(this.getCodigo())
+    }
     return this.getCodigo();
   }
 }

@@ -2,5 +2,6 @@ import { Livro } from '../Entities/Livro'
 import { Usuario } from '../Entities/Usuario'
 
 export interface IValidador {
-  validar: (livro: Livro, usuario: Usuario) => boolean
+  validarEmprestimo: (livro: Livro, usuario: Usuario) => boolean
+  validarReserva: (livro: Livro, usuario: Usuario) => boolean
 }

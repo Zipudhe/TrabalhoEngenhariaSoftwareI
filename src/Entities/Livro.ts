@@ -63,4 +63,8 @@ export class Livro {
     
     exemplar && exemplar.setStatus('Disponível')
   }
+
+  public reservar(): number {
+    return this.getCodigo();
+  }
 }

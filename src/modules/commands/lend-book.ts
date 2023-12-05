@@ -1,10 +1,10 @@
-import Database from "../../database";
+import BancoDeDados from "../../BancoDeDados";
 import ICommand from "./command.interface";
 
 export class LendBook implements ICommand {
   context: string;
   constructor(
-    private readonly database: Database,
+    private readonly database: BancoDeDados,
   ) {
     this.context = 'emp';
   }

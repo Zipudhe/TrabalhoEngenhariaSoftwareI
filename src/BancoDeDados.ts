@@ -2,13 +2,13 @@ import * as fs from 'fs';
 
 const filePath = 'dadosTeste.json';
 
-export interface IDatabaseUser {
+export interface IBancoDeDadosUsuario {
   codigo: number;
   tipo_usuario: 'AlunoGraduacao' | 'AlunoPosGraduacao' | 'Professor';
   nome: string;
 }
 
-export interface IDatabaseBook {
+export interface IBancoDeDadosLivro {
   codigo: number;
   titulo: string;
   editora: string;
@@ -17,27 +17,27 @@ export interface IDatabaseBook {
   ano_publicacao: number;
 }
 
-export interface IDatabaseExemplary {
+export interface IBancoDeDadosExemplar {
   codigo_livro: number;
   codigo_exemplar: number;
   titulo_exemplar: 'Disponível' | 'Indisponível';
 }
 
-interface IDatabaseLend {
+interface IBancoDeDadosEmprestimo {
   codigo_emprestimo: number;
   codigo_livro: number;
   codigo_exemplar: number;
   codigo_usuario: number;
 }
 
-interface IDatabase {
-  usuarios: IDatabaseUser[];
-  livros: IDatabaseBook[];
-  exemplares: IDatabaseExemplary[];
-  emprestimos: IDatabaseLend[];
+interface IBancoDeDados {
+  usuarios: IBancoDeDadosUsuario[];
+  livros: IBancoDeDadosLivro[];
+  exemplares: IBancoDeDadosExemplar[];
+  emprestimos: IBancoDeDadosEmprestimo[];
 }
 
-function readJsonFile(): IDatabase | null {
+function readJsonFile(): IBancoDeDados | null {
   try {
     const data = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(data);
@@ -47,36 +47,36 @@ function readJsonFile(): IDatabase | null {
   }
 }
 
-export class Database {
-  private static instance: Database;
-  private data: IDatabase = readJsonFile() || {
+export class BancoDeDados {
+  private static instance: BancoDeDados;
+  private data: IBancoDeDados = readJsonFile() || {
     usuarios: [],
     livros: [],
     exemplares: [],
     emprestimos: []
   };
 
-  public static getInstance(): Database {
-    if (!Database.instance) {
-      Database.instance = new Database();
+  public static getInstance(): BancoDeDados {
+    if (!BancoDeDados.instance) {
+      BancoDeDados.instance = new BancoDeDados();
     }
-    return Database.instance;
+    return BancoDeDados.instance;
   }
 
-  public getUsuarios(): IDatabaseUser[] {
+  public getUsuarios(): IBancoDeDadosUsuario[] {
     return this.data.usuarios;
   }
 
-  public getUsuario(id: number): IDatabaseUser {
+  public getUsuario(id: number): IBancoDeDadosUsuario {
     const user = this.data.usuarios.filter(_ => _.codigo === id)[0];
     return user;
   }
 
-  public postUsuarios(usuario: IDatabaseUser): void {
+  public postUsuarios(usuario: IBancoDeDadosUsuario): void {
     this.data.usuarios.push(usuario);
   }
 
-  public putUsuario(id: number, data: Partial<IDatabaseUser>): void {
+  public putUsuario(id: number, data: Partial<IBancoDeDadosUsuario>): void {
     let user = this.data.usuarios.filter(_ => _.codigo === id)[0];
     user = { 
       codigo: data.codigo || user.codigo,
@@ -95,20 +95,20 @@ export class Database {
     this.data.usuarios.push(...arr);
   }
 
-  public getLivros(): IDatabaseBook[] {
+  public getLivros(): IBancoDeDadosLivro[] {
     return this.data.livros;
   }
 
-  public getLivro(id: number): IDatabaseBook {
+  public getLivro(id: number): IBancoDeDadosLivro {
     const book = this.data.livros.filter(_ => _.codigo === id)[0];
     return book;
   }
 
-  public postLivros(livro: IDatabaseBook): void {
+  public postLivros(livro: IBancoDeDadosLivro): void {
     this.data.livros.push(livro);
   }
 
-  public putLivro(id: number, data: Partial<IDatabaseBook>): void {
+  public putLivro(id: number, data: Partial<IBancoDeDadosLivro>): void {
     let book = this.data.livros.filter(_ => _.codigo === id)[0];
     book = {
       codigo: data.codigo || book.codigo,
@@ -130,25 +130,25 @@ export class Database {
     this.data.livros.push(...arr);
   }
 
-  public getExemplares(): IDatabaseExemplary[] {
+  public getExemplares(): IBancoDeDadosExemplar[] {
     return this.data.exemplares;
   }
 
-  public getExemplaresByLivro(bookId: number): IDatabaseExemplary[] {
+  public getExemplaresByLivro(bookId: number): IBancoDeDadosExemplar[] {
     const exemplaries = this.data.exemplares.filter(_ => _.codigo_livro === bookId);
     return exemplaries;
   }
 
-  public getExemplar(id: number): IDatabaseExemplary {
+  public getExemplar(id: number): IBancoDeDadosExemplar {
     const exemplary = this.data.exemplares.filter(_ => _.codigo_exemplar === id)[0];
     return exemplary;
   }
 
-  public postExemplares(exemplar: IDatabaseExemplary): void {
+  public postExemplares(exemplar: IBancoDeDadosExemplar): void {
     this.data.exemplares.push(exemplar);
   }
 
-  public putExemplar(id: number, data: Partial<IDatabaseExemplary>): void {
+  public putExemplar(id: number, data: Partial<IBancoDeDadosExemplar>): void {
     let exemplary = this.data.exemplares.filter(_ => _.codigo_exemplar === id)[0];
     exemplary = {
       codigo_exemplar: data.codigo_exemplar || exemplary.codigo_exemplar,
@@ -167,20 +167,20 @@ export class Database {
     this.data.exemplares.push(...arr);
   }
 
-  public getEmprestimos(): IDatabaseLend[] {
+  public getEmprestimos(): IBancoDeDadosEmprestimo[] {
     return this.data.emprestimos;
   }
 
-  public getEmprestimo(id: number): IDatabaseLend {
+  public getEmprestimo(id: number): IBancoDeDadosEmprestimo {
     const lend = this.data.emprestimos.filter(_ => _.codigo_emprestimo === id)[0];
     return lend;
   }
 
-  public postEmprestimos(emprestimo: IDatabaseLend): void {
+  public postEmprestimos(emprestimo: IBancoDeDadosEmprestimo): void {
     this.data.emprestimos.push(emprestimo);
   }
 
-  public putEmprestimo(id: number, data: Partial<IDatabaseLend>): void {
+  public putEmprestimo(id: number, data: Partial<IBancoDeDadosEmprestimo>): void {
     let lend = this.data.emprestimos.filter(_ => _.codigo_emprestimo === id)[0];
     lend = {
       codigo_emprestimo: data.codigo_emprestimo || lend.codigo_emprestimo,
@@ -201,18 +201,4 @@ export class Database {
   }
 }
 
-export default Database;
-
-// MVC - Model View Controller
-// Modules - Controller -> Service -> Repositório
-/*
-  Usuario -> biblioteca -> database
-
-
-  Design Facade [Biblioteca]
-  Main -> Biblioteca -> database
-  Main -> GerenciadorLivrosAluno.emprestarLivro(Usuario  usuario) -> {
-    usuario.obterTempoEmprestimo()
-        
-  }  
-*/
+export default BancoDeDados;

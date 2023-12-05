@@ -3,7 +3,7 @@ import { AlunoGraduacao } from './AlunoGraduacao'
 import { AlunoPosGraduacao } from './AlunoPosGraduacao'
 import { Professor } from './Professor'
 
-import { Database, IDatabaseUser } from '../database'
+import { BancoDeDados, IBancoDeDadosUsuario } from '../BancoDeDados'
 import { ValidadorAluno } from './ValidadorAluno'
 import { ValidadorProfessor } from './ValidadorProfessor'
 
@@ -12,11 +12,11 @@ export class GerenciadorUsuarios {
   
   //@ts-ignore
   public obterUsuarios(): Usuario[] {
-    const database = Database.getInstance()
+    const database = BancoDeDados.getInstance()
 
     const databaseUsers = database.getUsuarios()
     
-    const usuarios = databaseUsers.map((databaseUser: IDatabaseUser) => {
+    const usuarios = databaseUsers.map((databaseUser: IBancoDeDadosUsuario) => {
       switch(databaseUser.tipo_usuario) {
         case 'AlunoGraduacao':
           return new AlunoGraduacao(databaseUser.codigo, databaseUser.nome, 3, new ValidadorAluno())

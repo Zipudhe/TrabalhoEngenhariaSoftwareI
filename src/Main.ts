@@ -38,7 +38,7 @@ class Main {
         const input = this.prompt('digite o comando: ').split(' ')
         const [usrCommand, ...args] = input
 
-        const parsedArgs = args.map(arg => Number.parseInt(arg))
+        const parsedArgs = args.map((arg: string) => Number.parseInt(arg))
 
         this.executarComando(usrCommand, parsedArgs)
       }

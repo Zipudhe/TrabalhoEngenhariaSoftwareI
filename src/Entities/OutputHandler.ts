@@ -36,6 +36,7 @@ export class OutputHandler {
   static mostrarUsuarioInfo(usuario: Usuario) {
     const biblioteca = Biblioteca.obterInstancia()
     const emprestimos = usuario.obterEmprestimos()
+    const reservas = usuario.obterRevervas()
     
     const dateFormatter = Intl.DateTimeFormat('pt-BR', { 
       dateStyle: 'short'
@@ -55,6 +56,14 @@ export class OutputHandler {
       console.log(`\t - Data Emprestimo: ${chalk.green(dateFormatter.format(emprestimo.obterDataEmprestimo()))}`)
       console.log(`\t - Data Entrega: ${chalk.green(dateFormatter.format(emprestimo.obterDataEntrega()))}`)
       console.log(`\t - Status: ${statusText}`)
+    })
+
+    console.log(chalk.green('Reservas: '))
+
+    reservas.length > 0 && reservas.forEach(reserva => {
+      const livro = biblioteca.consultarLivro(reserva.obterCodLivro())
+      console.log('++++++++++++++++++++++++++++')
+      console.log(`\t - Titulo: ${chalk.green(livro?.getTitulo())}`)
     })
   }
 

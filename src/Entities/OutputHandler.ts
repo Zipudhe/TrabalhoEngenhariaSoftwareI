@@ -65,4 +65,12 @@ export class OutputHandler {
       Usuario: ${usuario.obterNome()}
     `)
   }
+
+  static reservaStatus(nomeUsuario: string, tituloLivro: string, status: boolean ) {
+    console.log(`
+      Usuario: ${chalk.green(nomeUsuario)} 
+      Livro: ${chalk.green(tituloLivro)}
+      Reserva: ${status ? `${chalk.green('Reservado')}` : `${chalk.red('Não Reservado')}`}
+    `)
+  }
 }

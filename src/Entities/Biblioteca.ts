@@ -29,7 +29,7 @@ export class Biblioteca {
   }
 
   public consultarLivro(codLivro: number): Livro | undefined {
-    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+    const livro = this.livros.find((livro) => livro.obterCodigo() == codLivro)
     return livro
   }
 
@@ -40,7 +40,7 @@ export class Biblioteca {
 
   public emprestarLivro(codLivro: number, codUsuario: number): void {
     const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codUsuario)
-    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+    const livro = this.livros.find((livro) => livro.obterCodigo() == codLivro)
     
     if(!usuario) {
       OutputHandler.ErrorOutput('Usuário inválido')
@@ -57,7 +57,7 @@ export class Biblioteca {
 
   public devolverLivro(codUsuario: number, codLivro: number): void {
     const usuario = this.usuarios.find((usuario) => usuario.obterCodigo() == codUsuario)
-    const livro = this.livros.find((livro) => livro.getCodigo() == codLivro)
+    const livro = this.livros.find((livro) => livro.obterCodigo() == codLivro)
 
     if(!usuario) {
       OutputHandler.ErrorOutput('Usuário inválido')

@@ -25,7 +25,7 @@ export class OutputHandler {
       dateStyle: 'short'
     })
     console.log('----------------------------')
-    console.log(`Titulo: ${chalk.green(livro.getTitulo())}`)
+    console.log(`Titulo: ${chalk.green(livro.obterTitulo())}`)
     console.log(`Quantidade reservas: ${qtdReservas}`)
     for(let key of exemplaresReservados.keys()) {
       console.log(`${exemplaresReservados.get(key)?.obterNome()}`)
@@ -34,11 +34,11 @@ export class OutputHandler {
     console.log('Examplares: ')
     exemplares.forEach(exemplar => {
       const usuario = exemplaresEmprestados.get(exemplar)
-      console.log(`\t - Código exemplar: ${exemplar.getCodigo()}`)
-      const status = exemplar.getStatus()
+      console.log(`\t - Código exemplar: ${exemplar.obterCodigo()}`)
+      const status = exemplar.obterStatus()
       console.log(`\t - Status: ${status == 'Disponível' ? chalk.green(status) : chalk.red(status)}`)
       if(usuario) {
-        const emprestimo = usuario.obterEmprestimo(exemplar.getCodigo())
+        const emprestimo = usuario.obterEmprestimo(exemplar.obterCodigo())
         console.log(`\t Usuario: ${usuario.obterNome()}`)
         console.log(`\t Data Emprestimo: ${dateFormatter.format(emprestimo?.obterDataEmprestimo())}`)
         console.log(`\t Data Devolucao: ${dateFormatter.format(emprestimo?.obterDataEntrega())}`)
@@ -67,7 +67,7 @@ export class OutputHandler {
       const statusEmprestimo = emprestimo.obteStatusEmprestimo()
       const statusText = statusEmprestimo == StatusEmprestimo.Finalizado ? chalk.green(statusEmprestimo) : chalk.red(statusEmprestimo)
       console.log('++++++++++++++++++++++++++++')
-      console.log(`\t - Titulo: ${chalk.green(livro?.getTitulo())}`)
+      console.log(`\t - Titulo: ${chalk.green(livro?.obterTitulo())}`)
       console.log(`\t - Data Emprestimo: ${chalk.green(dateFormatter.format(emprestimo.obterDataEmprestimo()))}`)
       console.log(`\t - Data Entrega: ${chalk.green(dateFormatter.format(emprestimo.obterDataEntrega()))}`)
       console.log(`\t - Status: ${statusText}`)
@@ -76,7 +76,7 @@ export class OutputHandler {
 
   static devolucaoInfo(usuario: Usuario, livro: Livro) {
     console.log(`
-      Livro: ${livro.getTitulo()}
+      Livro: ${livro.obterTitulo()}
       Status: ${chalk.green('Devolvido')}
       Usuario: ${usuario.obterNome()}
     `)

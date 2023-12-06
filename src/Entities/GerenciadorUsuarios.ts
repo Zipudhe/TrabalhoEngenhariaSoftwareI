@@ -8,20 +8,20 @@ import { ValidadorAluno } from './ValidadorAluno'
 import { ValidadorProfessor } from './ValidadorProfessor'
 
 export class GerenciadorUsuarios {
+  private database = BancoDeDados.getInstance() 
   constructor() {}
   
   //@ts-ignore
   public obterUsuarios(): Usuario[] {
-    const database = BancoDeDados.getInstance()
 
-    const databaseUsers = database.getUsuarios()
+    const databaseUsers = this.database.getUsuarios()
     
     const usuarios = databaseUsers.map((databaseUser: IBancoDeDadosUsuario) => {
       switch(databaseUser.tipo_usuario) {
         case 'AlunoGraduacao':
           return new AlunoGraduacao(databaseUser.codigo, databaseUser.nome, 3, new ValidadorAluno())
         case 'AlunoPosGraduacao':
-          return new AlunoPosGraduacao(databaseUser.codigo, databaseUser.nome, 4 , new ValidadorAluno())
+          return new AlunoPosGraduacao(databaseUser.codigo, databaseUser.nome, 4, new ValidadorAluno())
         case 'Professor':
           return new Professor(databaseUser.codigo, databaseUser.nome, Number.MAX_VALUE, new ValidadorProfessor())
       }

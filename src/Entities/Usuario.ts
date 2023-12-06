@@ -4,6 +4,7 @@ import { Livro } from "./Livro";
 import { OutputHandler } from "./OutputHandler";
 import { StatusEmprestimo, Emprestimo } from './Emprestimo'
 import { Reserva } from "./Reserva";
+import { ValidadorAluno } from "./ValidadorAluno";
 
 
 export abstract class Usuario implements IUsuario {
@@ -18,7 +19,8 @@ export abstract class Usuario implements IUsuario {
     protected nome: string,
     protected limiteEmprestimo: number,
     private validador: IValidador
-  ) {}
+  ) {
+  }
 
   public obterNome(): string {
     return this.nome;
@@ -66,29 +68,29 @@ export abstract class Usuario implements IUsuario {
     }
 
     const codExemplar = livro.emprestar(this.codigo)
-    const emprestimo = new Emprestimo(livro.getCodigo(), codExemplar, this.tempoEmprestimo)
+    const emprestimo = new Emprestimo(livro.obterCodigo(), codExemplar, this.tempoEmprestimo)
     this.emprestimos.push(emprestimo)
     OutputHandler.SuccessOutput("Livro emprestado com sucesso")
   }
 
   public devolverLivro(livro: Livro) {
-    const emprestimoEmCurso = this.obterEmprestimosEmCurso().find(emprestimo => emprestimo.obterCodLivro() == livro.getCodigo())
+    const emprestimoEmCurso = this.obterEmprestimosEmCurso().find(emprestimo => emprestimo.obterCodLivro() == livro.obterCodigo())
     if(emprestimoEmCurso) {
-      emprestimoEmCurso.devolverLivro()
+      emprestimoEmCurso.finalizarEmprestimo()
       livro.devolver()
     }
   }
 
   public reservarLivro(livro: Livro): void {
     if(!this.validador.validarReserva(livro, this)) {
-      OutputHandler.reservaStatus(this.nome, livro.getTitulo(), false)
+      OutputHandler.reservaStatus(this.nome, livro.obterTitulo(), false)
       return
     }
 
     const codExemplar = livro.reservar(this.codigo)
-    const reserva = new Reserva(livro.getCodigo(), codExemplar)
+    const reserva = new Reserva(livro.obterCodigo(), codExemplar)
     this.reservas.push(reserva)
-    OutputHandler.reservaStatus(this.nome, livro.getTitulo(), true)
+    OutputHandler.reservaStatus(this.nome, livro.obterTitulo(), true)
   }
   
   public atualizarNotificacoes(): void {

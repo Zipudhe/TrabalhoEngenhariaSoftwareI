@@ -26,7 +26,7 @@ export class Emprestimo {
     return this.codExemplar
   }
 
-  public devolverLivro(): void {
+  public finalizarEmprestimo(): void {
     this.statusEmprestimo = StatusEmprestimo.Finalizado
   }
 

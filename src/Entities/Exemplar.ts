@@ -16,19 +16,15 @@ export class Exemplar {
     this.codigoUsuario = 0
   }
 
-  public getCodigo(): number {
+  public obterCodigo(): number {
     return this.codigo;
   }
 
-  public getStatus(): Status {
+  public obterStatus(): Status {
     return this.status;
   }
 
-  public setStatus(status: Status): void {
+  public atualizarStatus(status: Status): void {
     this.status = status;
-  }
-
-  public obterStatus() {
-    return this.status
   }
 }

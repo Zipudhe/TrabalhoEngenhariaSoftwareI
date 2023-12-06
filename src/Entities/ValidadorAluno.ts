@@ -15,19 +15,18 @@ export class ValidadorAluno implements IValidador {
         return false
       }
 
-      if(usuario.obterEmprestimosEmCurso().find(emprestimo => emprestimo.obterCodLivro() == livro.getCodigo())) {
+      if(usuario.obterEmprestimosEmCurso().find(emprestimo => emprestimo.obterCodLivro() == livro.obterCodigo())) {
         OutputHandler.ErrorOutput('Usuario já está com este livro')
         return false
       }
 
       const exemplares = livro.obterExemplares()
       const exemplaresReservados = exemplares.filter(exemplar => exemplar.obterStatus() == 'Reservado')
-      const usuarioQueReservou = exemplaresReservados.find(exemplar => exemplar.obterCodigoUsuario() == usuario.obterCodigo())
-      
+      const podeEmprestar = exemplaresReservados.length > 0 ? exemplaresReservados.find(exemplar => exemplar.obterStatus() == 'Reservado' && exemplar.obterCodigoUsuario() == usuario.obterCodigo()) : true
       if(
         exemplares.every(exemplar => exemplar.obterStatus() == 'Indisponível')
           ||
-        !usuarioQueReservou
+        !podeEmprestar
         ) {
         OutputHandler.ErrorOutput('Livro sem exemplares disponíveis')
         return false

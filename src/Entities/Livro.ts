@@ -13,27 +13,27 @@ export class Livro {
     private editora: string,
   ){}
 
-  public getCodigo(): number {
+  public obterCodigo(): number {
     return this.codigo;
   }
 
-  public getTitulo(): string {
+  public obterTitulo(): string {
     return this.titulo;
   }
 
-  public getAutores(): string {
+  public obterAutores(): string {
     return this.autores;
   }
 
-  public getEdicao(): string {
+  public obterEdicaco(): string {
     return this.edicao;
   }
 
-  public getAnoPublicacao(): number {
+  public obterAnoPublicacao(): number {
     return this.anoPublicacao;
   }
 
-  public getEditora(): string {
+  public obterEditora(): string {
     return this.editora;
   }
 
@@ -54,16 +54,16 @@ export class Livro {
   }
 
   public checarDisponibilidadeExemplares(): boolean {
-    const exemplaresDisponiveis = this.obterExamplaresDisponiveis()
     return this.obterExamplaresDisponiveis().length > 0
   }
 
   public emprestar(codUsuario: number): number {
-    const exemplarDisponivel = this.exemplares.find(exemplar => exemplar.getStatus() === 'Disponível' || exemplar.getStatus() === 'Reservado');
+    const exemplarDisponivel = this.exemplares.find(exemplar => exemplar.obterStatus() === 'Disponível' || exemplar.obterStatus() === 'Reservado');
+    console.log({ exemplarDisponivel })
     if (exemplarDisponivel) {
-      exemplarDisponivel.setStatus('Indisponível');
+      exemplarDisponivel.atualizarStatus('Indisponível');
       exemplarDisponivel.adicionarUsuario(codUsuario)
-      return exemplarDisponivel.getCodigo();
+      return exemplarDisponivel.obterCodigo();
     } else {
       throw new Error('Não há exemplares disponíveis');
     }
@@ -72,21 +72,21 @@ export class Livro {
   public devolver(): void {
     const exemplar = this.exemplares.find(exemplar => exemplar.obterStatus() == 'Indisponível')
     
-    exemplar && exemplar.setStatus('Disponível')
+    exemplar && exemplar.atualizarStatus('Disponível')
   }
 
   public reservar(codUsuario: number): number {
     const exemplar = this.exemplares.find(exemplar => exemplar.obterStatus() ==  'Disponível')!
-    exemplar.setStatus('Reservado')
+    exemplar.atualizarStatus('Reservado')
     exemplar.adicionarUsuario(codUsuario)
 
     const livrosReservados = this.exemplares.filter(exemplar => exemplar.obterStatus() == 'Reservado').length
     
     if(livrosReservados == 2) {
       const biblioteca = Biblioteca.obterInstancia()
-      biblioteca.EventManager.notify(this.getCodigo())
+      biblioteca.EventManager.notify(this.obterCodigo())
     }
     
-    return this.getCodigo();
+    return this.obterCodigo();
   }
 }
